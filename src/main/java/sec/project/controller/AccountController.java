@@ -20,7 +20,7 @@ import sec.project.repository.AccountRepository;
  */
 public class AccountController {
     
-     @Autowired
+    @Autowired
     private AccountRepository accountRepository;
 
     @Autowired
@@ -36,7 +36,7 @@ public class AccountController {
         return "login";
     }
     
-
+// not needed yet
     
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     public String changePassword(Authentication authentication, @RequestParam String password) {
@@ -46,6 +46,7 @@ public class AccountController {
         }
          
         account.setPassword(encoder.encode(password));
+        System.out.println("nimi ja salasana asetettu: " + account.getUsername()+ " " + account.getPassword());
         accountRepository.save(account);
 
         return "form";
