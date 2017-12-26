@@ -7,5 +7,24 @@
 
         <h1>Thank you! You have been signed up to the event!</h1>
 
+        
+        
+        <h3>Here you can check that are your friends coming also:</h3>
+            
+        <ul> 
+            <li th:each="signup : ${participantList}"> 
+               <!-- <span th:text="${signup}">the name of participant</span> -->
+               <div th:switch="${currentUsername}">
+                   <span th:case="${signup.account}" th:text="${signup}"></span>
+                   <span th:case="*" th:text="${signup}" hidden='true'></span>
+               </div>
+            </li>
+        </ul>
+        
+        <form method="get" action="/items">
+            <button type="submit">Count here how much cash you need to take with you! </button>
+        </form>
+        
+        
     </body>
 </html>
