@@ -25,25 +25,33 @@ public class CustomUserDetailsService implements UserDetailsService {
         // this data would typically be retrieved from a database
        // this.accountDetails = new TreeMap<>();
        //this.accountDetails.put("ted", "$2a$06$rtacOjuBuSlhnqMO2GKxW.Bs8J6KI0kYjw/gtF0bfErYgFyNTZRDm");
-        Account account = new Account();
         
+        Account account1 = new Account();  
         // username and password is "ted"
-        account.setUsername("ted");
-        account.setPassword("$2a$06$rtacOjuBuSlhnqMO2GKxW.Bs8J6KI0kYjw/gtF0bfErYgFyNTZRDm");
-        accountRepository.save(account);
+        account1.setUsername("ted");
+        account1.setPassword("$2a$06$rtacOjuBuSlhnqMO2GKxW.Bs8J6KI0kYjw/gtF0bfErYgFyNTZRDm");
+        accountRepository.save(account1);
+        // ---
+        
+        Account account2 = new Account();
+        // username "jee" and password is "ted"
+        account2.setUsername("jee");
+        account2.setPassword("$2a$06$rtacOjuBuSlhnqMO2GKxW.Bs8J6KI0kYjw/gtF0bfErYgFyNTZRDm");
+        accountRepository.save(account2);
         // ---
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // if (!this.accountDetails.containsKey(username)) {
-        if (this.accountRepository.findByUsername(username) == null) {
+        Account account = accountRepository.findByUsername(username);
+        if (account == null) {
             throw new UsernameNotFoundException("No such user: " + username);
         }
 
         return new org.springframework.security.core.userdetails.User(
-                username,
-                this.accountRepository.findByUsername(username).getPassword(),
+                account.getUsername(),
+                account.getPassword(),
                 true,
                 true,
                 true,
