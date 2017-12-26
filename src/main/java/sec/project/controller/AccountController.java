@@ -36,7 +36,7 @@ public class AccountController {
         return "login";
     }
     
-// not needed yet
+// not needed (yet?)
     
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     public String changePassword(Authentication authentication, @RequestParam String password) {
