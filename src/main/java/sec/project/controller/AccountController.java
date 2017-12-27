@@ -27,12 +27,21 @@ public class AccountController {
     private PasswordEncoder encoder;
 
     @RequestMapping("*")
-    public String defaultMapping() {
-        return "redirect:/login";
+    public String defaultMapping(Authentication authentication) {
+        System.out.println("AccountController defaultMapping");
+        Account currentAccount = getCurrentAccount(authentication);
+        if (currentAccount == null) {
+            return "redirect:/login";
+        }
+        else {
+            return "redirect:/form";
+        }
+        
     }
 
     @RequestMapping("/login")
     public String passwordForm() {
+        System.out.println("passwordForm");
         return "login";
     }
     
@@ -40,7 +49,7 @@ public class AccountController {
     
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     public String changePassword(Authentication authentication, @RequestParam String password) {
-        Account account = accountRepository.findByUsername(authentication.getName());
+        Account account = getCurrentAccount(authentication);
         if (account == null) {
             return "redirect:/login";
         }
@@ -50,5 +59,9 @@ public class AccountController {
         accountRepository.save(account);
 
         return "form";
+    }
+    
+    public Account getCurrentAccount(Authentication authentication) {
+        return accountRepository.findByUsername(authentication.getName());
     }
 }
