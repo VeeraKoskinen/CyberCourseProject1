@@ -23,8 +23,11 @@ public class SignupController {
     private SignupRepository signupRepository;
 
     @RequestMapping("*")
-    public String defaultMapping() {
-        return "redirect:/login";
+    public String defaultMapping(Authentication authentication) {
+        System.out.println("SignUpController defaultMapping ");
+        Account currentAccount = getCurrentAccount(authentication);
+        System.out.println("Current account: " + currentAccount.getUsername());
+        return "redirect:/form";
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -54,4 +57,7 @@ public class SignupController {
         return "done";
     }
     
+    public Account getCurrentAccount(Authentication authentication) {
+        return accountRepository.findByUsername(authentication.getName());
+    }
 }
