@@ -12,8 +12,7 @@
         <h3>Here you can check that are your friends coming also:</h3>
             
         <ul> 
-            <li th:each="signup : ${participantList}"> 
-               <!-- <span th:text="${signup}">the name of participant</span> -->
+            <li style="list-style-type: none;" th:each="signup : ${participantList}"> 
                <div th:switch="${currentUsername}">
                    <span th:case="${signup.account}" th:text="${signup}"></span>
                    <span th:case="*" th:text="${signup}" hidden='true'></span>
@@ -21,7 +20,7 @@
             </li>
         </ul>
         
-        <form method="get" action="/items">
+        <form method="get" action="/items" style="width:100px;height:100px;">
             <button type="submit">Count here how much cash you need to take with you! </button>
         </form>
         
