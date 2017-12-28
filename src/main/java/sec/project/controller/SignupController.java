@@ -3,6 +3,7 @@ package sec.project.controller;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class SignupController {
 
     @Autowired
     private SignupRepository signupRepository;
+    
+    @Autowired
+    private PasswordEncoder encoder;
 
     @RequestMapping("*")
     public String defaultMapping(Authentication authentication) {
@@ -55,6 +59,20 @@ public class SignupController {
         
         
         return "done";
+    }
+    
+    
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
+    public String changePassword(Authentication authentication, @RequestParam String password) {
+        Account account = accountRepository.findByUsername(authentication.getName());
+        if (account == null) {
+            return "redirect:/login";
+        }
+        
+        account.setPassword(encoder.encode(password));
+        accountRepository.save(account);
+
+        return "thanks";
     }
     
     public Account getCurrentAccount(Authentication authentication) {
