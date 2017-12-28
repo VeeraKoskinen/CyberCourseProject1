@@ -31,24 +31,3 @@ public class ItemController {
     } 
 }
 
-//@Autowired
-//    private ItemRepository itemRepository;
-//
-//    @PostConstruct
-//    public void init() {
-//        // add some content to the product repository
-//        itemRepository.save(new Item("Fanta", 2.5));
-//        itemRepository.save(new Item("Cola", 2.5));
-//        itemRepository.save(new Item("Beer", 4.0));
-//        itemRepository.save(new Item("Water", 0.0));
-//        itemRepository.save(new Item("Vegetarian menu", 28.0));
-//        itemRepository.save(new Item("Meatlovers menu", 35.0));
-//        itemRepository.save(new Item("Fish menu", 32.5));
-//    }
-//
-//    @RequestMapping(value = "/items", method = RequestMethod.GET)
-//    public String list(Model model) {
-//        model.addAttribute("items", itemRepository.findAll());
-//        System.out.println("items in itemRepository: " + itemRepository.findAll().size());
-//        return "items";
-//    }
