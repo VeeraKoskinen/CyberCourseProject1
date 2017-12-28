@@ -23,9 +23,6 @@ public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
 
-    @Autowired
-    private PasswordEncoder encoder;
-
     @RequestMapping("*")
     public String defaultMapping(Authentication authentication) {
         System.out.println("AccountController defaultMapping");
@@ -44,23 +41,7 @@ public class AccountController {
         System.out.println("passwordForm");
         return "login";
     }
-    
-// not needed (yet?)
-    
-    @RequestMapping(value = "/password", method = RequestMethod.POST)
-    public String changePassword(Authentication authentication, @RequestParam String password) {
-        Account account = getCurrentAccount(authentication);
-        if (account == null) {
-            return "redirect:/login";
-        }
-         
-        account.setPassword(encoder.encode(password));
-        System.out.println("nimi ja salasana asetettu: " + account.getUsername()+ " " + account.getPassword());
-        accountRepository.save(account);
-
-        return "form";
-    }
-    
+ 
     public Account getCurrentAccount(Authentication authentication) {
         return accountRepository.findByUsername(authentication.getName());
     }
