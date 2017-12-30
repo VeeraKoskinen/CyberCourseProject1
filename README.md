@@ -44,7 +44,7 @@ IDENTIFICATION:
       </form>
 </body>
 </html>
-```HTML
+```
 
 3. Open this file in the same browser with the program.
 4. Then write new password to field for it.
