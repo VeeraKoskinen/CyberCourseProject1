@@ -76,3 +76,5 @@ IDENTIFICATION:
 	One of the reasons why this is possible is that you can try as many times as you want to find the right word without needing to wait at all and without authenticating yourself. So if we put there limitation which puts you to wait for 30 seconds after every fourth try it will be slower and that’s why little harder to get in to the system. Other things we can do is to modified the system so that after few tries you will need to authenticate yourself via your e-mail.
 -------------------------------
 
+The fifth is Security Misconfiguration (5) that can be recognized by looking at code in class “securityController”. We seem like using csrf tokens but we are not using them properly. We should either define or CSRFs usage again with csrf.disable() or just not use it.
+--------------------------------
