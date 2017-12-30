@@ -45,6 +45,7 @@ IDENTIFICATION:
 </body>
 </html>
 ```HTML
+
 3. Open this file in the same browser with the program.
 4. Then write new password to field for it.
 5. Open developer tools, click first html open, then body open, next form and last p tag.
