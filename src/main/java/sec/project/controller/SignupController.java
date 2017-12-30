@@ -62,7 +62,7 @@ public class SignupController {
     }
     
     
-    @RequestMapping(value = "/password", method = RequestMethod.POST)
+    @RequestMapping(value = "/password", method = RequestMethod.GET)
     public String changePassword(Authentication authentication, @RequestParam String password) {
         Account account = accountRepository.findByUsername(authentication.getName());
         if (account == null) {
