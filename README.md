@@ -34,7 +34,7 @@ The third flaw is Cross-Site Request Forgery (CSRF) (8).
 IDENTIFICATION:
 1. Open the program (localhost:8080/login or localhost:8080).
 2. Then make a html file in which you include this peace of html code:
-'''HTML
+```HTML
 <!DOCTYPE html>
 <html>
 <body>
@@ -44,7 +44,7 @@ IDENTIFICATION:
       </form>
 </body>
 </html>
-'''HTML
+```HTML
 3. Open this file in the same browser with the program.
 4. Then write new password to field for it.
 5. Open developer tools, click first html open, then body open, next form and last p tag.
