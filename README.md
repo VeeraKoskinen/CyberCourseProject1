@@ -34,6 +34,7 @@ The third flaw is Cross-Site Request Forgery (CSRF) (8).
 IDENTIFICATION:
 1. Open the program (localhost:8080/login or localhost:8080).
 2. Then make a html file in which you include this peace of html code:
+'''HTML
 <!DOCTYPE html>
 <html>
 <body>
@@ -43,6 +44,7 @@ IDENTIFICATION:
       </form>
 </body>
 </html>
+'''HTML
 3. Open this file in the same browser with the program.
 4. Then write new password to field for it.
 5. Open developer tools, click first html open, then body open, next form and last p tag.
@@ -51,7 +53,7 @@ IDENTIFICATION:
 8. Next you can choose to go try our old password ted with user ted and it shouldn’t work.
 9. Last try log in with username ted and hacked password new.
 10. And it works. We have change password for someone else without his or her knowledge.
-This can be avoid by Checking CSRF token and also Checking standard headers to verify the request is same origin as all the others.
+	This can be avoid by Checking CSRF token and also Checking standard headers to verify the request is same origin as all the others.
 ----------------------------------
 The fourth vulnerability is Broken Authentication and Session Management flaw (2). You can use for example Owasp Zap to find right passwords by fuzzing with big password lists. You need to find only the right username first.
 IDENTIFICATION:
@@ -72,4 +74,4 @@ IDENTIFICATION:
 15. And we can recognize that it is the one we just changed to teds password.
 	One of the reasons why this is possible is that you can try as many times as you want to find the right word without needing to wait at all and without authenticating yourself. So if we put there limitation which puts you to wait for 30 seconds after every fourth try it will be slower and that’s why little harder to get in to the system. Other things we can do is to modified the system so that after few tries you will need to authenticate yourself via your e-mail.
 -------------------------------
-≈
+
